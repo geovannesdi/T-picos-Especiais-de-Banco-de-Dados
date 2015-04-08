@@ -1,3 +1,4 @@
+USE TopicosEspeciaisDeBancoDeDados
 --=============================================================================
 /*
 Elabore uma consulta SQL quer retorne como resultado os dvds que foram alugados 
@@ -5,7 +6,7 @@ mais de 2 vezes em 2009. Apresentar o titulo do dvd e o total de locações.
 */
 
 SELECT 
-	titulo, categoria, valor, dt_locacao 
+	titulo, COUNT(titulo) AS 'Numeros de locação'
 FROM
 	dbo.TB_LOCACAO
 JOIN
@@ -14,7 +15,9 @@ ON
 	dbo.TB_LOCACAO.cd_dvd = dbo.TB_DVD.cd_dvd
 WHERE
 	dt_locacao  between '2008-12-31' and '2009-12-31'
-
+GROUP BY 
+	titulo
+HAVING COUNT(dbo.TB_LOCACAO.cd_dvd) > 2
 --=============================================================================
 
 
