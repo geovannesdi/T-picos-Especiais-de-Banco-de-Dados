@@ -57,3 +57,24 @@ FROM
 RIGHT JOIN 
 	TB_PROFESSOR P ON
 	(T.MATRICULA_PROFESSOR = P.MATRICULA_PROFESSOR)
+
+
+/*
+e.	Selecione todos os alunos e, quando existir, 
+as turmas em que estão matriculados. 
+Ordene o resultado pelo Nome do Aluno.
+*/
+
+SELECT 
+	A.NOME, T.NM_TURMA
+FROM 
+	TB_ALUNO A
+
+INNER JOIN
+	TB_ALUNOS_TURMA AT ON
+	(A.MATRICULA=AT.MATRICULA)
+RIGHT JOIN
+	TB_TURMA T ON
+	(AT.COD_TURMA=T.COD_TURMA)
+ORDER BY A.NOME
+
